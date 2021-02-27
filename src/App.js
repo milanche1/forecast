@@ -7,6 +7,7 @@ import Search from "./components/Search";
 
 const App = () => {
   const [mockData, setMockData] = useState([]);
+  const [defaultData, setDefaultData] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -18,8 +19,7 @@ const App = () => {
     const res = await axios.get(
       `https://api.openweathermap.org/data/2.5/weather?q=Belgrade&appid=ad2ac65c430e299c3ed4fabe674063e1`
     );
-    setMockData(res.data);
-    console.log("my state!!!!!!!!!!! ", mockData);
+    setDefaultData(res.data);
     setLoading(false);
   };
 
@@ -37,7 +37,7 @@ const App = () => {
       <div className="App-container">
         <h1>Weather Forecast</h1>
         <Search searchCity={searchCity} />
-        <Weather loading={loading} data={mockData} />
+        <Weather loading={loading} data={mockData} default={defaultData} />
       </div>
     </div>
   );
